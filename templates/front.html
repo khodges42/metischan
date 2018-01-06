@@ -1,0 +1,10 @@
+<!doctype html>
+<title>metischan</title>
+<body>
+  <ul>
+  {% for board in boards %}
+  <li><a href="/{{board[1]}}">{{board[1]}} - {{board[2]}}</a></li>
+  {% endfor %}
+  </ul>
+
+</body>

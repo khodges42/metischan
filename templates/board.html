@@ -1,0 +1,35 @@
+<!doctype html>
+<title>metischan</title>
+<head>
+  <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="{{url_for('static',filename='materialize/css/materialize.min.css')}}"  media="screen,projection"/>
+</head>
+<body>
+  <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      <script type="text/javascript" src="{{url_for('static',filename='materialize/js/materialize.min.js')}}"></script>
+    
+  <h1>{{board}} - {{board_desc}}</h1>
+  <form method = "POST" action="/{{board}}/post" enctype=multipart/form-data>
+    Name:<input type="text" name="name"/><br/>
+    Image:<input type=file name="image"/><br/>
+    Post:<textarea type="text" name="post_text"></textarea><br/>
+    <input type="submit" value="Post!"/>
+    </form>
+  <ul>
+  {% for post in posts %}
+  <div>
+    {% if post[1] %}
+    <a href="{{url_for('static',filename='uploads/'+post[1])}}"><img style="width:100px;" src="{{url_for('static',filename='uploads/'+post[1])}}" /></a>
+    {% endif %}
+    User:{{post[2]}}
+    Date:{{post[3]}}
+    Post:{{post[5]}}
+    <a href="/{{board}}/reply/{{post[0]}}">Reply</a>
+  </div>
+  {% endfor %}
+  </ul>
+
+</body>
